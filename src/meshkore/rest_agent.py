@@ -159,7 +159,7 @@ class MeshKoreRestAgent:
                     agent.ack([msg["_id"] for msg in msgs if "_id" in msg])
                 time.sleep(5)
         """
-        params = {"since_id": since_id} if since_id else {}
+        params = {"since_id": since_id}  # always send, even 0 (triggers peek mode)
         resp = self._client.get(
             f"{self.hub_url}/agents/messages",
             headers=self._headers(),
